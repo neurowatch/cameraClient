@@ -1,0 +1,2 @@
+class SaveClip:
+    pass
