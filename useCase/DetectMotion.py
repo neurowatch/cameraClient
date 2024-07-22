@@ -19,7 +19,7 @@ class DetectMotion:
 
         self.frame_counter += 1
 
-        binary_max_diff, frame_max_diff = self.process_three_frame_differencing(background_frame, frame1, frame2)
+        binary_max_diff = self.process_three_frame_differencing(background_frame, frame1, frame2)
 
         motion_detected = np.any(binary_max_diff > 0)
 
@@ -31,12 +31,10 @@ class DetectMotion:
 
         max_diff = cv2.max(diff1, diff2)
         gray_max_diff = cv2.cvtColor(max_diff, cv2.COLOR_BGR2GRAY)
+        _, binary_max_diff = cv2.threshold(gray_max_diff, 25, 255, cv2.THRESH_BINARY)
 
         kernel = np.ones((5, 5), np.uint8)
-        _, binary_max_diff = cv2.threshold(gray_max_diff, 25, 255, cv2.THRESH_BINARY)
         binary_max_diff = cv2.morphologyEx(binary_max_diff, cv2.MORPH_CLOSE, kernel)
         binary_max_diff = cv2.morphologyEx(binary_max_diff, cv2.MORPH_OPEN, kernel)
 
-        combined_max_diff = cv2.cvtColor(binary_max_diff, cv2.COLOR_GRAY2BGR)
-        
-        return binary_max_diff, combined_max_diff
+        return binary_max_diff

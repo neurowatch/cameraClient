@@ -1,16 +1,16 @@
 import cv2
 import settings
-from useCase import BuildBackgroundFrame
-from useCase import CreateClip
-from useCase import DetectMotion
-from useCase import DetectObjects
+from service import NeurowatchService
+from useCase import BuildBackgroundFrame, CreateClip, DetectMotion, DetectObjects, SaveClip, DetectedObjectsStore
 
 class CameraController:
 
     def __init__(self):
-        self.detectMotionUseCase = DetectMotion()
-        self.detectObjectUseCase = DetectObjects()
-        self.createClipUseCase = CreateClip()
+        self.detect_motion_use_case = DetectMotion()
+        self.detect_object_use_case = DetectObjects()
+        self.create_clip_use_case = CreateClip()
+        self.save_clip_use_case = SaveClip(NeurowatchService())
+        self.detected_objects_store_use_case = DetectedObjectsStore()
 
     def caputre_video(self):
         cap = cv2.VideoCapture(settings.SOURCE)
@@ -27,19 +27,21 @@ class CameraController:
         frame_counter = 0
 
         while True:
-            motion_detected, frame2, frame2_processed = self.detectMotionUseCase.execute(cap, background_frame, frame1)
+            motion_detected, frame2, frame2_processed = self.detect_motion_use_case.execute(cap, background_frame, frame1)
             if (motion_detected):
-                detectedObjects = self.detectObjectUseCase.execute(frame2)
-                # TODO: Store detected objects
+                detected_objects_in_frame = self.detect_object_use_case.execute(frame2)
+                self.detected_objects_store_use_case.store(detected_objects_in_frame)
                 create_clip = True
 
             if create_clip == True:
-                self.createClipUseCase.execute(frame2)
+                self.create_clip_use_case.execute(frame2)
 
-            if self.createClipUseCase.is_completed():
-                self.createClipUseCase.on_complete()
+            if self.create_clip_use_case.is_completed():
+                self.save_clip_use_case.execute(
+                    file_path = self.create_clip_use_case.on_complete(),
+                    detected_objects = self.detected_objects_store_use_case.pop()
+                )
                 break
-                #Upload the clip
 
             frame1 = frame2_processed
             

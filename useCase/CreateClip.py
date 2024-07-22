@@ -4,7 +4,7 @@ class CreateClip:
     def __init__(
             self, 
             duration=20, 
-            frame_rate=30,
+            frame_rate=15,
             file_name="output.mp4"
         ) -> None:
         self.duration = duration
@@ -30,8 +30,10 @@ class CreateClip:
             return True
 
     def create_clip(self, height, width):
+        #ffmpeg -i input.mp4 -vcodec h264 -acodec aac output.mp4
         self.clip = cv2.VideoWriter(self.file_name, self.fourcc, self.frame_rate, (width, height))
 
     def on_complete(self):
         self.clip.release()
         self.clip = None
+        return self.file_name
