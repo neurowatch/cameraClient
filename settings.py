@@ -1,3 +1,12 @@
+import configparser
+
+CONFIG_FILE = 'config.ini'
+
+configParser = configparser.ConfigParser()
+configParser.read(CONFIG_FILE)
+
+config = configParser['DEFAULT']
+
 RESIZE_WIDTH = 320
 RESIZE_HEIGHT = 240
 BLUR_KERNEL = (5, 5)
@@ -6,4 +15,10 @@ HISTORY=10
 UPDATE_INTERVAL=100
 
 API_URL="http://127.0.0.1:8000/api/"
-API_KEY="f729f9720035b15eee674e1a530795a4fba3f8ab"
+
+if 'token' not in config:
+    API_KEY= '' 
+else:
+    API_KEY= config['token']
+
+#"f729f9720035b15eee674e1a530795a4fba3f8ab"
