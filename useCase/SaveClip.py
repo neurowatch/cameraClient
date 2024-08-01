@@ -14,4 +14,4 @@ class SaveClip:
                         "detection_confidence": detected_object.confidence
                     }
                 )
-            self.service.uploadVideo(files=files, data=data)
+            self.service.upload_video(files=files, data=data)

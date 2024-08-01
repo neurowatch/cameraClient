@@ -27,21 +27,20 @@ class CameraController:
         frame_counter = 0
 
         while True:
-            motion_detected, frame2, frame2_processed = self.detect_motion_use_case.execute(cap, background_frame, frame1)
+            motion_detected, frame_raw, frame2_processed = self.detect_motion_use_case.execute(cap, background_frame, frame1)
             if (motion_detected):
-                detected_objects_in_frame = self.detect_object_use_case.execute(frame2)
+                detected_objects_in_frame = self.detect_object_use_case.execute(frame_raw)
                 self.detected_objects_store_use_case.store(detected_objects_in_frame)
                 create_clip = True
 
             if create_clip == True:
-                self.create_clip_use_case.execute(frame2)
-
-            if self.create_clip_use_case.is_completed():
-                self.save_clip_use_case.execute(
-                    file_path = self.create_clip_use_case.on_complete(),
-                    detected_objects = self.detected_objects_store_use_case.pop()
-                )
-                break
+                self.create_clip_use_case.execute(frame_raw)
+                if self.create_clip_use_case.is_completed():
+                    self.save_clip_use_case.execute(
+                        file_path = self.create_clip_use_case.on_complete(),
+                        detected_objects = self.detected_objects_store_use_case.pop()
+                    )
+                    create_clip = False
 
             frame1 = frame2_processed
             
