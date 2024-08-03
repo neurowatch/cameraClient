@@ -1,2 +1,5 @@
 yolov8n.pt
 __pycache__/
+output.mp4
+config.ini
+yolov8*
