@@ -8,13 +8,10 @@ class NeurowatchService:
         self.headers = {
             'Authorization': f'Token {token}'
         }
-        print(self.headers)
-
 
     def upload_video(self, files, data):
         video_url = "videos/"
         url = self.base_url + video_url
-        print(self.headers)
         response = requests.post(url, headers=self.headers, files=files, data=data)
         return response
     

@@ -16,13 +16,13 @@ class CreateClip:
         self.current_frame = 0
 
     def execute(self, frame):
-        print(frame.shape)
         if self.clip == None:
             height, width, _ = frame.shape
             self.create_clip(height, width)
 
         self.clip.write(frame)
         self.current_frame += 1
+        return self.current_frame
 
     def is_completed(self):
         if self.current_frame <= self.total_frames:
