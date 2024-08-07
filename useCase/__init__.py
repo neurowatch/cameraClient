@@ -5,3 +5,4 @@ from .DetectObjects import DetectObjects
 from .SaveClip import SaveClip
 from .DetectedObjectsStore import DetectedObjectsStore
 from .DetectLigthChange import DetectLightChange
+from .GetMOG2BackgroundSubstractorFrame import GetMOG2BackgroundSubstractorFrame

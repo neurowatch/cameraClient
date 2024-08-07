@@ -4,46 +4,34 @@ import math
 
 class DetectObjects:
 
-    def __init__(self):
+    def __init__(self, use_ncnn=True):
         self.model = YOLO("yolov8n.pt")
-        self.model.export(format="ncnn")
-        self.ncnn_model = YOLO("./yolov8n_ncnn_model")
-        self.accepted_classes = ["person"]
+        self.use_ncnn = use_ncnn
+        if use_ncnn:
+            self.model.export(format="ncnn")
+            self.ncnn_model = YOLO("./yolov8n_ncnn_model")
 
     def execute(self, frame):
 
         detectedObjects = []
+        
+        trackedObjects = None
+        if self.use_ncnn:
+            trackedObjects = self.ncnn_model.track(
+                source = frame,
+                conf = 0.75,
+                vid_stride = 2,
+                classes = [0],
+            )
+        else:
+            trackedObjects = self.model.track(
+                source = frame,
+                conf = 0.75,
+                vid_stride = 2,
+                imgsz = 320,
+                classes = [0],
+            )
 
-        '''
-        trackedObjects = self.model.track(
-            source = frame,
-            conf = 0.75,
-            vid_stride = 2,
-            imgsz = 320,
-        )
-        '''
-        '''
-        trackedObjects = self.ncnn_model.track(
-            source = frame,
-            conf = 0.75,
-            vid_stride = 2,
-            classes=[0] # Person is the class with index 0
-        )
-        '''
-        trackedObjects = self.ncnn_model.track(
-            source = frame,
-            conf = 0.75,
-            vid_stride = 2,
-        )
-        '''
-        trackedObjects = self.model.track(
-            source = frame,
-            conf = 0.75,
-            vid_stride = 2,
-            imgsz = 320,
-            classes=[0] # Person is the class with index 0
-        )
-        '''
         for r in trackedObjects:
             boxes = r.boxes
             for box in boxes:

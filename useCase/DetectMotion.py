@@ -1,12 +1,12 @@
 import cv2
 import numpy as np
 import settings
-from .BuildBackgroundFrame import BuildBackgroundFrame
 from .DetectLigthChange import DetectLightChange
 
 class DetectMotion:
     
-    def __init__(self):
+    def __init__(self, background_frame_usecase):
+        self.background_frame_usecase = background_frame_usecase
         self.frame_counter = 0
 
     def execute(self, cap, background_frame, frame1):
@@ -16,7 +16,7 @@ class DetectMotion:
         frame2 = cv2.GaussianBlur(frame2, settings.BLUR_KERNEL, cv2.BORDER_DEFAULT)
 
         if (self.frame_counter % settings.UPDATE_INTERVAL == 0) or DetectLightChange.execute(background_frame, frame2) :
-            background_frame, frame = BuildBackgroundFrame.execute(cap, settings.HISTORY)
+            background_frame, frame = self.background_frame_usecase.execute(cap)
             self.frame_counter = 0
 
         self.frame_counter += 1
@@ -28,6 +28,8 @@ class DetectMotion:
         return motion_detected, frame, frame2, background_frame
     
     def process_three_frame_differencing(self, frame1, frame2, frame3):
+        
+        print(frame1.shape, frame2.shape, frame3.shape)
         diff1 = cv2.absdiff(frame1, frame2)
         diff2 = cv2.absdiff(frame2, frame3)
 

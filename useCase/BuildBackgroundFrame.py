@@ -4,10 +4,12 @@ import settings
 
 class BuildBackgroundFrame:
 
-    @staticmethod
-    def execute(cap, history):
+    def __init__(self, history) -> None:
+        self.history = history
+
+    def execute(self, cap):
         background_frames = []
-        for _ in range(history):
+        for _ in range(self.history):
             ret, frame = cap.read()
             if not ret:
                 print("Error: Could not read frame")
