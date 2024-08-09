@@ -13,7 +13,7 @@ The CameraClient overal work is very simple. The `CameraController.capture_video
 
 ## Setup
 
-`tbd` pip reqs etc
+`tbd`
 
 ## TestBed
 

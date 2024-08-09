@@ -6,8 +6,7 @@ def test_detection():
     start_time = time.time()
     background_substraction_usecase=GetMOG2BackgroundSubstractorFrame(history=10)
     cameraController = CameraController(
-        upload_clip=False, 
-        show=True, 
+        upload_clip=True, 
         background_substraction_usecase=background_substraction_usecase,
         detect_motion_usecase=DetectMotion(background_substraction_usecase)
     )

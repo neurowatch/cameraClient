@@ -7,6 +7,7 @@ configParser.read(CONFIG_FILE)
 
 config = configParser['DEFAULT']
 
+# TODO: Move this to config.ini
 RESIZE_WIDTH = 320
 RESIZE_HEIGHT = 240
 BLUR_KERNEL = (5, 5)
@@ -20,5 +21,3 @@ if 'token' not in config:
     API_KEY= '' 
 else:
     API_KEY= config['token']
-
-#"f729f9720035b15eee674e1a530795a4fba3f8ab"

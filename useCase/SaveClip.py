@@ -11,7 +11,8 @@ class SaveClip:
                 data['detected_objects'].append(
                     {
                         "object_name": detected_object.name, 
-                        "detection_confidence": detected_object.confidence
+                        "detection_confidence": detected_object.confidence,
+                        "detected_in_frame": detected_object.detected_in_frame
                     }
                 )
             self.service.upload_video(files=files, data=data)
