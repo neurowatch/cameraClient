@@ -1,6 +1,9 @@
 import cv2
 
 class CreateClip:
+    '''
+        Creates a video clip based on the input params. By default of 20 seconds duration and 15 fps frame rate.
+    '''
     def __init__(
             self, 
             duration=20, 
@@ -25,6 +28,7 @@ class CreateClip:
         return self.current_frame
 
     def is_completed(self):
+        # Checks if the clip is created
         if self.current_frame <= self.total_frames:
             return False
         else:
@@ -34,6 +38,7 @@ class CreateClip:
         self.clip = cv2.VideoWriter(self.file_name, self.fourcc, self.frame_rate, (width, height))
 
     def on_complete(self):
+        # Called after completion, releases the clip object, clears the values and returns the file name
         self.clip.release()
         self.clip = None
         self.current_frame = 0

@@ -15,4 +15,5 @@ class SaveClip:
                         "detected_in_frame": detected_object.detected_in_frame
                     }
                 )
+            print(data)
             self.service.upload_video(files=files, data=data)

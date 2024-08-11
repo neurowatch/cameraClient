@@ -58,10 +58,12 @@ class CameraController:
             if (motion_detected):
                 # Obtains any objects detected in the frame, the unprocessed frame is passed
                 detected_objects_in_frame = self.detect_object_use_case.execute(frame_raw)
-                # Stores the objects, also which frame in the clip it has been detected
-                self.detected_objects_store_use_case.store(detected_objects_in_frame, current_clip_frame)
-                # Sets the flag to True
-                create_clip = True
+                # Checks if the list is not empty
+                if detected_objects_in_frame:
+                    # Stores the objects, also which frame in the clip it has been detected
+                    self.detected_objects_store_use_case.store(detected_objects_in_frame, current_clip_frame)
+                    # Sets the flag to True
+                    create_clip = True
 
             if create_clip == True:
                 # Creates the clip file and adds and returns the current_clip_frame, this clip value is actually used in the next iteration
@@ -82,12 +84,13 @@ class CameraController:
                     # Resets flag and counter.
                     create_clip = False
                     current_clip_frame = 0
-                    break
 
             # Assigns the current frame to the previous, this is used in the following loop
-            frame1 = frame2_processed
-            
-            frame_counter += 1
+            if frame2_processed is not None:
+                frame1 = frame2_processed        
+                frame_counter += 1
+            else:
+                break
             
             # If show is True, shows the background frame and frame1
             if self.show:
