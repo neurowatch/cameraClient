@@ -21,7 +21,7 @@ class DetectMotion:
 
         # Checks if a new background frame is required
         if (self.frame_counter % settings.UPDATE_INTERVAL == 0) or DetectLightChange.execute(background_frame, frame2) :
-            background_frame, frame = self.background_frame_usecase.execute(cap)
+            background_frame, frame = self.background_frame_usecase.execute(cap, background_frame)
             self.frame_counter = 0
 
         self.frame_counter += 1

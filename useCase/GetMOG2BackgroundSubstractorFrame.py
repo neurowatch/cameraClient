@@ -11,7 +11,8 @@ class GetMOG2BackgroundSubstractorFrame:
         ret, frame = cap.read()
         if not ret:
             print("Error: Could not read frame")
-            exit()
+            background_frame, frame
+
         frame1 = cv2.resize(frame, (settings.RESIZE_WIDTH, settings.RESIZE_HEIGHT))
         frame1 = cv2.GaussianBlur(frame1, settings.BLUR_KERNEL, cv2.BORDER_DEFAULT)
             

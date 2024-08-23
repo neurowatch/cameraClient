@@ -2,6 +2,9 @@ from .BuildBackgroundFrame import BuildBackgroundFrame
 from .CreateClip import CreateClip
 from .DetectMotion import DetectMotion
 from .DetectObjects import DetectObjects
+from .DetectObjectsSSD import DetectObjectsSSD
+from .DetectObjectsSSDLite import DetectObjectsSSDLite
+from .DetectObjectsTrack import DetectObjectsTrack
 from .SaveClip import SaveClip
 from .DetectedObjectsStore import DetectedObjectsStore
 from .DetectLigthChange import DetectLightChange

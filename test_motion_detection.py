@@ -4,12 +4,9 @@ import time
 
 def test_detection():
     start_time = time.time()
-    background_substraction_usecase=GetMOG2BackgroundSubstractorFrame(history=10)
     cameraController = CameraController(
-        source="testbed/sources/test_clip_5.mp4",
-        upload_clip=True, 
-        background_substraction_usecase=background_substraction_usecase,
-        detect_motion_usecase=DetectMotion(background_substraction_usecase)
+        upload_clip=False,
+        show=True,
     )
     frame_count = cameraController.caputre_video()
     end_time = time.time()
