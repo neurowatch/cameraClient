@@ -4,16 +4,13 @@ This project contains the code for the cameraClient, it is meant to run on a ras
 
 To run it, simply execute `python neurowatch.py`
 
-Configuration to run it on boot `tbd`
-
-
 ## Overview
 
 The CameraClient overal work is very simple. The `CameraController.capture_video()` method starts the flow, a `VideoCapture` object is obtained from `cv2.VideoCapture()` depending on the passed source it can be from a file or a camera feed. After that a series of use cases are called to build the background frame, detect motion, detect objects(if motion is detected), create and upload the clip to the server. This all occurs on a loop as any cv2 code.
 
 ## Setup
 
-`tbd`
+Running `python neurowatch.py` will start the execution and perform initial setup. A token is required which should be geneated serverside. Check the [server](https://github.com/neurowatch/server) repo for more information on who to geneate a token and all the required setup on that side.
 
 ## TestBed
 
