@@ -1,4 +1,7 @@
 class SaveClip:
+    '''
+        Builds the save video requests and calls the api to save the video
+    '''
     
     def __init__(self, neurowatchService):
         self.service = neurowatchService

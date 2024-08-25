@@ -3,6 +3,9 @@ import numpy as np
 import settings
 
 class BuildBackgroundFrame:
+    '''
+        Builds a background frame using the median pixel value of the frames
+    '''
 
     def __init__(self, history) -> None:
         self.history = history

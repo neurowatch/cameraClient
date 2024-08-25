@@ -4,7 +4,7 @@ import math
 
 class DetectObjectsTrack:
     '''
-        Runs YOLOv8 to detect objects in the frame
+        Runs YOLOv8 to detect objects in the frame using track
     '''
     def __init__(self, use_ncnn=True):
         self.model = YOLO("yolov8n.pt")

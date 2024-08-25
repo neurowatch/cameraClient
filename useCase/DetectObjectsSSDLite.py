@@ -7,14 +7,17 @@ import torch.nn.utils.prune as prune
 
 class DetectObjectsSSDLite:
     '''
-        Runs torchVision SSD300 model to detect objects in the frame
+        Runs torchVision SSD300 mobilenet_v3 model to detect objects in the frame
     '''
     def __init__(self):
         self.model = torchvision.models.detection.ssdlite320_mobilenet_v3_large(
             pretrained=True, 
             task='detect',
         )
-        self.model.eval().to("cpu")  # Set the model to evaluation mode
+
+        # Set the model to evaluation mode
+        self.model.eval().to("cpu")  
+        # Set the labels that we are interested in, person in this case
         self.coco_labels = [
             "__background__", "person"
         ]

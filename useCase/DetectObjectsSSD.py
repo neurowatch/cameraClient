@@ -7,17 +7,22 @@ import torch.nn.utils.prune as prune
 
 class DetectObjectsSSD:
     '''
-        Runs torchVision SSD300 model to detect objects in the frame
+        Runs torchVision SSD300 vgg16 model to detect objects in the frame
     '''
     def __init__(self):
         self.model = torchvision.models.detection.ssd300_vgg16(
             pretrained=True, 
             task='detect',
         )
-        self.model.eval().to("cpu")  # Set the model to evaluation mode
+
+        # Set the model to evaluation mode
+        self.model.eval().to("cpu")  
+        # Set the labels that we are interested in, person in this case
         self.coco_labels = [
             "__background__", "person"
         ]
+
+        # Quantize the model to make it more performant
         self.quantized_model = torch.quantization.quantize_dynamic(self.model, {torch.nn.Conv2d}, dtype=torch.qint8)
         for module in self.quantized_model.modules():
             if isinstance(module, torch.nn.Conv2d):
