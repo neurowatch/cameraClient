@@ -1,0 +1,61 @@
+Test Name,Frame Count,Total Time,FPS
+testbed/sources/test_clip_1.mp4
+Test CameraController,1301,43.72793173789978,29.752150360050074
+Test custom background substraction BuildBackgroundFrame,1442,0.47112536430358887,3060.7564551985965
+Test cv2 background substraction GetMOG2BackgroundSubstractorFrame,1442,0.6473870277404785,2227.415654331063
+Test motion detection,1442,0.8522553443908691,1691.9811761704327
+Test YOLOv8 model,1442,992.1722784042358,1.4533766276147588
+Test YOLOv8 track model,1442,3514.941338300705,0.41024866739230803
+Test ssdlite320_mobilenet_v3_large object detection,1442,2232.6023347377777,0.6458830475823922
+Test Name,Detected objects,Expected objects
+Test YOLOv8 model accuracy,0,0
+Test YOLOv8 track settings model accuracy,0,0
+Test TorchVision SSDLite model accuracy,0,0
+testbed/sources/test_clip_2.mp4
+Test CameraController,1407,759.5317895412445,1.8524570259920587
+Test custom background substraction BuildBackgroundFrame,1557,0.5594918727874756,2782.882246783646
+Test cv2 background substraction GetMOG2BackgroundSubstractorFrame,1557,0.727027177810669,2141.5980688489076
+Test motion detection,1557,0.9665422439575195,1610.8969987952555
+Test YOLOv8 model,1557,1157.8118960857391,1.3447780293705842
+Test YOLOv8 track model,1557,3926.6527466773987,0.39652093028024465
+Test ssdlite320_mobilenet_v3_large object detection,1557,2449.9485154151917,0.6355235590475811
+Test Name,Detected objects,Expected objects
+Test YOLOv8 model accuracy,4,4
+Test YOLOv8 track settings model accuracy,4,4
+Test TorchVision SSDLite model accuracy,4,4
+testbed/sources/test_clip_3.mp4
+Test CameraController,945,34.55280947685242,27.349440300450052
+Test custom background substraction BuildBackgroundFrame,1045,0.5223743915557861,2000.480913483679
+Test cv2 background substraction GetMOG2BackgroundSubstractorFrame,1045,0.7195301055908203,1452.3367290405868
+Test motion detection,1045,0.9624273777008057,1085.7962109270586
+Test YOLOv8 model,1045,776.5735621452332,1.3456548753903708
+Test YOLOv8 track model,1045,2584.848753452301,0.40427897322979045
+Test ssdlite320_mobilenet_v3_large object detection,1045,1659.5636472702026,0.6296835928642499
+Test Name,Detected objects,Expected objects
+Test YOLOv8 model accuracy,0,0
+Test YOLOv8 track settings model accuracy,0,0
+Test TorchVision SSDLite model accuracy,0,0
+testbed/sources/test_clip_4.mp4
+Test CameraController,1122,681.9847664833069,1.6451980383457194
+Test custom background substraction BuildBackgroundFrame,1242,0.5369937419891357,2312.876115463423
+Test cv2 background substraction GetMOG2BackgroundSubstractorFrame,1242,0.7100896835327148,1749.0748405483337
+Test motion detection,1242,0.961444616317749,1291.8060790196675
+Test YOLOv8 model,1242,924.1944570541382,1.3438730242538612
+Test YOLOv8 track model,1242,3094.459753036499,0.4013624668348856
+Test ssdlite320_mobilenet_v3_large object detection,1242,1960.147085428238,0.6336259198266528
+Test Name,Detected objects,Expected objects
+Test YOLOv8 model accuracy,3,4
+Test YOLOv8 track settings model accuracy,5,4
+Test TorchVision SSDLite model accuracy,2,4
+testbed/sources/test_clip_5.mp4
+Test CameraController,1126,518.0237979888916,2.1736453119942296
+Test custom background substraction BuildBackgroundFrame,1252,0.5192582607269287,2411.131598074683
+Test cv2 background substraction GetMOG2BackgroundSubstractorFrame,1252,0.7094717025756836,1764.6933562744057
+Test motion detection,1252,0.959850549697876,1304.3697275519417
+Test YOLOv8 model,1252,930.919783115387,1.344906427716141
+Test YOLOv8 track model,1252,3103.819813489914,0.40337393123096915
+Test ssdlite320_mobilenet_v3_large object detection,1252,1912.60174202919,0.6546056988694785
+Test Name,Detected objects,Expected objects
+Test YOLOv8 model accuracy,0,3
+Test YOLOv8 track settings model accuracy,5,3
+Test TorchVision SSDLite model accuracy,0,3
